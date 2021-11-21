@@ -2,9 +2,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('ping')
-		.setDescription('Replies with Pong!'),
+		.setName('delete-rule')
+		.setDescription('Deletes a rule for deleting messages'),
 	async execute(interaction) {
-		await interaction.reply('Pong!');
+		await interaction.reply(`Rule has been deleted!`);
 	},
 };

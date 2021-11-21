@@ -2,6 +2,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
+const { exists } = require('./helpers/file-helper.js');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -20,6 +21,14 @@ for (const file of commandFiles) {
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
+	if (!exists('./delethan-config.json')){
+		console.log('Writing new Delethan config file')
+		fs.writeFile('./delethan-config.json', '{}', function (err) {
+			if (err) throw err;
+			console.log('File delethan-config.json created successfully.');
+		})
+	};
+
 });
 
 client.on('interactionCreate', async interaction => {
