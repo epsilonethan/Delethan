@@ -1,10 +1,26 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { CommandInteractionOptionResolver } = require('discord.js');
+const fs = require('fs');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('rules')
-		.setDescription('Sets a rule for deleting messages'),
+		.setDescription('Returns the list of all rules'),
 	async execute(interaction) {
-		await interaction.reply(`Rule has been created!`);
+		rules = JSON.parse(fs.readFileSync('./delethan-config.json', 'utf8'));
+		message = '';
+		firstMessage = 0;
+		for (let i=0; i < rules.length; i++){
+			console.log(rules[i]);
+			if (firstMessage){
+				message += `Rule ${rules[i].ruleId}: Channel #${rules[i].channel} will have messages deleted that are older than ${rules[i].lifetime} hr`
+				firstMessage++;
+			} else{
+				message += `\nRule ${rules[i].ruleId}: Channel #${rules[i].channel} will have messages deleted that are older than ${rules[i].lifetime} hr`
+			}
+			
+		}
+		
+		await interaction.reply(message);
 	},
 };

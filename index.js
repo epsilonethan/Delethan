@@ -23,7 +23,7 @@ client.once('ready', () => {
 	console.log('Ready!');
 	if (!exists('./delethan-config.json')){
 		console.log('Writing new Delethan config file')
-		fs.writeFile('./delethan-config.json', '{}', function (err) {
+		fs.writeFile('./delethan-config.json', '[]', function (err) {
 			if (err) throw err;
 			console.log('File delethan-config.json created successfully.');
 		})
