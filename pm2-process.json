@@ -1,0 +1,9 @@
+{
+    "script": "index.js",
+    "watch": true,
+    "ignore_watch": ["node_modules", "delethan-config.json"],
+    "watch_options": {
+        "followSymlinks": false
+    },
+    "name": "Delethan PM2"
+}
