@@ -1,7 +1,7 @@
 {
     "script": "index.js",
     "watch": true,
-    "ignore_watch": ["node_modules", "delethan-config.json"],
+    "ignore_watch": ["node_modules", "delethan-config.json", ".git", ".gitignore"],
     "watch_options": {
         "followSymlinks": false
     },

@@ -11,7 +11,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"pm2Watch": "pm2 start pm2-process.json",
+	"pm2Watch": "pm2 flush && pm2 start pm2-process.json && pm2 logs",
 	"pm2Stop": "pm2 stop index.js"
   },
   "repository": {

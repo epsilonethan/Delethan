@@ -1,8 +1,7 @@
 // Require the necessary discord.js classes
-const fs = require('fs');
+const fs =  require('fs');
 const { Client, Collection, Intents } = require('discord.js');
-const { token } = require('./config.json');
-const { exists } = require('./helpers/file-helper.js');
+const {messageCheck, rulesCheck} = require('./helpers/interval-func.js');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -21,10 +20,13 @@ for (const file of commandFiles) {
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
-	if (!exists('./delethan-config.json')){
+	if (!fs.existsSync('./delethan-config.json')){
 		console.log('Writing new Delethan config file')
 		let writeFile = fs.writeFileSync('./delethan-config.json', '[]', 'utf-8')
 	};
+
+	messageCheck();
+	rulesCheck();
 
 });
 
@@ -44,4 +46,8 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Login to Discord with your client's token
-client.login(token);
+fs.readFile('./config.json','utf-8',(err,jsonString)=>{
+	const data = JSON.parse(jsonString);
+	client.login(data.token);
+	 //whatever other code you may fanacy
+	 })
