@@ -9,6 +9,7 @@ module.exports = {
 			option.setName('channel')
 				.setDescription('The channel to be watched')
 				.setRequired(true)
+				.addChannelType(0) //zero is for Text Channel
 				)
 		.addIntegerOption(option =>
 			option.setName('lifetime')
