@@ -21,6 +21,8 @@ module.exports = {
 		let ruleIdMax = 0;
 		let exists = false;
 
+		console.log(interaction)
+
 		for (let i = 0; i < rules.length; i++){
 			if(rules[i].ruleId > ruleIdMax){
 				ruleIdMax = rules[i].ruleId;
@@ -44,7 +46,9 @@ module.exports = {
 
 		if (!exists){
 			rules.push({
-				ruleId: ruleIdMax+1, 
+				ruleId: ruleIdMax+1,
+				guildName: interaction.member.guild.name,
+				guildId: interaction.member.guild.id, 
 				lifetime: interaction.options.get('lifetime').value,
 				channel: interaction.options.get('channel').channel.name,
 				channelId: interaction.options.get('channel').value

@@ -21,6 +21,7 @@ module.exports = {
 				break
 			}
 		}
+		
 		if (ruleExists){
 			fs.writeFileSync('./delethan-config.json', JSON.stringify(rules), 'utf-8');
 			await interaction.reply(`Rule ID ${interaction.options.get('rule-id').value} has been deleted`)

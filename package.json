@@ -11,8 +11,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Warning: no test have been created\" && exit 0",
-	"pm2Watch": "pm2 flush && pm2 start pm2-process.json && pm2 logs",
-	"pm2Stop": "pm2 stop index.js"
+	  "start": "pm2 start pm2-process.json",
+	  "stop": "pm2 stop index.js && pm2 delete all"
   },
   "repository": {
     "type": "git",
