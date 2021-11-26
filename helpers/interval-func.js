@@ -17,7 +17,7 @@ module.exports={
 			messages = messages.toJSON();
 			messagesDeleted = false;
 
-			console.log(`\tChannel #${channel.name}: Checking for messages older than ${rules[i].lifetime} hr`);
+			console.log(`\tGuildId ${rules[i].guildId} Channel #${channel.name}: Checking for messages older than ${rules[i].lifetime} hr`);
 			
 			for (message of messages){
 				if (message.createdTimestamp <= cutOffTime){
