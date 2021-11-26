@@ -10,6 +10,11 @@ module.exports={
 		let message;
 		let messagesDeleted;
 
+		if(rules.length == 0){
+			console.log(`No rules have been setup!`);
+			return;
+		}
+
 		for (let i = 0; i < rules.length; i++){
 			cutOffTime = currentTime - (rules[i].lifetime * 3600000);
 			channel = await client.channels.fetch(rules[i].channelId);
