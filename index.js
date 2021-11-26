@@ -1,7 +1,7 @@
 // Require the necessary discord.js classes
 const fs =  require('fs');
 const { Client, Collection, Intents } = require('discord.js');
-const {messageCheck, rulesCheck, reviewMessages} = require('./helpers/interval-func.js');
+const {deleteMessages} = require('./helpers/interval-func.js');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -24,10 +24,12 @@ client.once('ready', () => {
 		console.log('Writing new Delethan config file')
 		let writeFile = fs.writeFileSync('./delethan-config.json', '[]', 'utf-8')
 	};
-
-	//messageCheck();
-	//rulesCheck();
-	reviewMessages(client);
+	const messageCheckInterval = setInterval(() => {
+		currentTime = new Date().getTime()
+		console.log(`(${currentTime}) Checking messages`);
+		deleteMessages(client);
+	}, 60000)
+	
 
 });
 
@@ -47,9 +49,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Login to Discord with your client's token
-fs.readFile('./config.json','utf-8',(err,jsonString)=>{
-	const data = JSON.parse(jsonString);
-	client.login(data.token);
-	 //whatever other code you may fancy
-	
-});
+client.login(JSON.parse(fs.readFileSync('./config.json', 'utf-8')).token)
